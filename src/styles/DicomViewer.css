@@ -9,4 +9,10 @@ canvas {
   height: auto;
   background-color: #fff;
 }
+#dwv-container canvas {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+}
     
