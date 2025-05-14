@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { App } from 'dwv';
-import '../styles/DicomViewer.css';
-
+import '../styles/DicomViewer.css'; // Your custom CSS (not DWV's, as DWV may not have it in NPM build)
 
 const DicomViewer = ({ file }) => {
   const viewerRef = useRef(null);
@@ -12,20 +11,23 @@ const DicomViewer = ({ file }) => {
 
     const app = new App();
     app.init({
-      containerDivId: viewerRef.current.id,
-      tools: ['Scroll'],
+      containerDivId: viewerRef.current.id
+      // ❌ Removed tools: DWV NPM builds sometimes fail with this
     });
 
     const fileUrl = URL.createObjectURL(file);
     app.loadURLs([fileUrl]);
 
     app.addEventListener('load', () => {
-      // After image is loaded, extract canvas and convert to JPEG
-      const canvas = viewerRef.current.querySelector('canvas');
-      if (canvas) {
-        const jpegDataUrl = canvas.toDataURL('image/jpeg');
-        setJpegUrl(jpegDataUrl);
-      }
+      setTimeout(() => {
+        const canvas = viewerRef.current?.querySelector('canvas');
+        if (canvas) {
+          const jpegDataUrl = canvas.toDataURL('image/jpeg');
+          setJpegUrl(jpegDataUrl);
+        } else {
+          console.warn('No canvas found.');
+        }
+      }, 500);
     });
 
     return () => {
