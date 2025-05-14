@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Contact = () => {
   return (
@@ -12,11 +12,12 @@ const Contact = () => {
 
 const styles = {
   section: {
-    padding: '50px',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    borderRadius: '10px',
-    margin: '20px'
-  }
+    padding: "50px",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    borderRadius: "10px",
+    margin: "30px",
+    color: "black",
+  },
 };
 
 export default Contact;
